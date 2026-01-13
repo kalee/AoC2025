@@ -99,7 +99,6 @@ sub part1 {
         $value = $final;
         $counter += $times;
     }  
-    #print Dumper($counter), "\n";
     print "part1: ", $counter, "\n";
 }
 
@@ -117,8 +116,6 @@ sub part2 {
         }
         my ($final, $times) = times_around($value, $number, 0);
 
-        #print "\$times: $times" , " ", "\$counter: $counter", "\n";
-
         $value = $final;
         $counter += $times;
     }      
@@ -127,15 +124,14 @@ sub part2 {
 
 sub load_data {
     ##### Load Data #####
-    my $filename = '../data/day1.txt';
-    #my $filename = '../data/google-0.txt';
-    #my $filename = '../data/reddit-.txt';
-    open(my $fh, '<:encoding(UTF-8)', $filename) or die "Could not open file '$filename' $!";
-    while (<$fh>) {
-    #while (<DATA>) {
+    #my $filename = '../data/day1.txt';
+    #open(my $fh, '<:encoding(UTF-8)', $filename) or die "Could not open file '$filename' $!";
+    #while (<$fh>) {
+    while (<DATA>) {
         chomp;
         push @data,$_;
     }
+    # close fh;
 }
 
 __DATA__

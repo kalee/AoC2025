@@ -28,9 +28,8 @@ $runtime = sprintf("%.8s", ($end - $start)*1000);
 print "part2 took $runtime ms\n";
 
 
-#print Dumper(@data), "\n";
-
 exit(0);
+
 
 
 sub find_largest_k_digits {
@@ -73,13 +72,12 @@ sub part1 {
     my $sum = 0;
     for my $num_str (@data) {
         my @all_digits = $num_str =~ /(.)/g;
+
         # Step 1: Extract all digits except the last one using regex
         my @digits_not_last = $num_str =~ /(\d)(?=.*\d)/g;
-        #print Dumper(@digits_not_last, $num_str), "\n";
 
         # Step 2: Find the largest digit (excluding last)
         my $largest_not_last = (sort { $b <=> $a } @digits_not_last)[0];
-        #print "Largest digit (not last): $largest_not_last\n";
 
         my $index = -1;
         for my $i (0..$#all_digits) {
@@ -98,11 +96,9 @@ sub part1 {
 
         # Step 5: Get max in sorted remaining to get second largest value
         my $second_largest = $sorted[0];
-
         
         my $val = 0 + ($largest_not_last . $second_largest); 
         $sum  += $val;
-        #print $val, "\n";
 
     }
 
@@ -130,14 +126,14 @@ sub part2 {
 
 sub load_data {
     ##### Load Data #####
-    my $filename = '../data/day3.txt';
-    open(my $fh, '<:encoding(UTF-8)', $filename) or die "Could not open file '$filename' $!";
-    while (<$fh>) {
-    #while (<DATA>) {
+    #my $filename = '../data/day3.txt';
+    #open(my $fh, '<:encoding(UTF-8)', $filename) or die "Could not open file '$filename' $!";
+    #while (<$fh>) {
+    while (<DATA>) {
         chomp;
         push @data, $_;
     }
-    close $fh;
+    #close $fh;
 }
 
 __DATA__

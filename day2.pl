@@ -27,11 +27,7 @@ $end = time();
 $runtime = sprintf("%.8s", ($end - $start)*1000);
 print "part2 took $runtime ms\n";
 
-# print Dumper(@data), "\n";
-
 exit(0);
-
-
 
 
 sub part1 {
@@ -40,18 +36,9 @@ sub part1 {
     my $count = 0;
     for my $item (@data) {
         my ($first, $second) = map { 0 + $_ } $item =~ /^(.*)-(.*)$/;
-        #print "\$first: $first ", "\$second: $second ", "\n";
         for my $i ($first..$second) {
             my $i_str = "$i";  # Convert to string
-            # Find any repeating pattern that repeats exactly twice.
-            #while ($i_str =~ /(.+)\1+/g) {
-            #while ($i_str =~ /(.{2,})\1(?!\1)/g) {
-            # Find any sequence of digits (1+ chars) that repeats exactly twice
-            #while ($i_str =~ /(\d+)\1(?!\1)/g) {
             while ($i_str =~ /^(\d+)\1$/g) {
-                #my $pattern = $1;
-                #print "Found repeating pattern: $pattern\n";
-                #print "invalid id: ", $i_str, "\n";
                 $count+=$i;
             }
         }
@@ -81,14 +68,14 @@ sub part2 {
 
 sub load_data {
     ##### Load Data #####
-    my $filename = '../data/day2.txt';
-    open(my $fh, '<:encoding(UTF-8)', $filename) or die "Could not open file '$filename' $!";
-    while (<$fh>) {
-    #while (<DATA>) {
+    #my $filename = '../data/day2.txt';
+    #open(my $fh, '<:encoding(UTF-8)', $filename) or die "Could not open file '$filename' $!";
+    #while (<$fh>) {
+    while (<DATA>) {
         chomp;
         @data = split /,/, $_;  # Split on comma
     }
-    close $fh;    
+    #close $fh;    
 }
 
 __DATA__
